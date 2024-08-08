@@ -1,0 +1,8 @@
+# This is not configurable, only used for tracking config version
+config-version: 1
+
+feature:
+  redstone-shears-wrench: true
+  better-wither-rose-place: true
+fix:
+  authme-bot-support: true
