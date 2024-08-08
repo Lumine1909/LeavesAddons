@@ -9,9 +9,9 @@ description = "Plugin side features for Leaves server."
 
 repositories {
     mavenCentral()
-    mavenLocal()
     maven("https://repo.codemc.org/repository/maven-public/")
     maven("https://repo.leavesmc.org/snapshots/")
+    maven("https://minevolt.net/repo/")
 }
 
 dependencies {
