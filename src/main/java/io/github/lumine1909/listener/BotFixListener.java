@@ -17,12 +17,12 @@ import java.util.Locale;
 import static io.github.lumine1909.LeavesAddons.config;
 import static io.github.lumine1909.LeavesAddons.instance;
 
-public class BotJoinListener implements Listener {
+public class BotFixListener implements Listener {
 
     private boolean isAuthmeEnabled;
     private PlayerCache cache;
 
-    public BotJoinListener() {
+    public BotFixListener() {
         AuthMe authMe = (AuthMe) Bukkit.getPluginManager().getPlugin("Authme");
         isAuthmeEnabled = authMe != null;
         if (!isAuthmeEnabled) {

@@ -2,7 +2,7 @@ package io.github.lumine1909;
 
 import io.github.lumine1909.command.CommandOverrideHandler;
 import io.github.lumine1909.config.AddonsConfigHandler;
-import io.github.lumine1909.listener.BotJoinListener;
+import io.github.lumine1909.listener.BotFixListener;
 import io.github.lumine1909.listener.ShearedWrenchListener;
 import io.github.lumine1909.listener.WitherRosePlaceListener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,7 +17,7 @@ public class LeavesAddons extends JavaPlugin {
     public void onEnable() {
         instance = this;
         config = new AddonsConfigHandler();
-        new BotJoinListener();
+        new BotFixListener();
         new ShearedWrenchListener();
         new WitherRosePlaceListener();
     }
