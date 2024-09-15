@@ -19,15 +19,17 @@ public class AddonsConfigHandler {
     public boolean REDSTONE_SHEARS_WRENCH;
     public boolean BETTER_WITHER_ROSE_PLACE;
     public boolean AUTHME_BOT_SUPPORT;
+    public int SHUKER_BOX_STACK;
 
     public AddonsConfigHandler() {
         addons = YamlConfiguration.loadConfiguration(addonsFile);
         if (!addonsFile.exists()) {
             createNewConfig();
         }
-        REDSTONE_SHEARS_WRENCH = addons.getBoolean("feature.redstone-shears-wrench");
-        BETTER_WITHER_ROSE_PLACE  = addons.getBoolean("feature.better-wither-rose-place");
+        REDSTONE_SHEARS_WRENCH = addons.getBoolean("feature.redstone-shears-wrench", false);
+        BETTER_WITHER_ROSE_PLACE  = addons.getBoolean("feature.better-wither-rose-place", false);
         AUTHME_BOT_SUPPORT = addons.getBoolean("fix.authme-bot-support");
+        SHUKER_BOX_STACK = addons.getInt("feature.shulker-box-stack", 1);
     }
 
     private void createNewConfig() {

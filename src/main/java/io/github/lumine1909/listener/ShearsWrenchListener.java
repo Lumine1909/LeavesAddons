@@ -17,7 +17,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -26,7 +25,7 @@ import static io.github.lumine1909.LeavesAddons.config;
 import static io.github.lumine1909.LeavesAddons.instance;
 import static org.bukkit.Material.*;
 
-public class ShearedWrenchListener implements Listener {
+public class ShearsWrenchListener implements Listener {
 
     static {
         ImmutableMap.Builder<Material, Integer> mapBuilder = ImmutableMap.builder();
@@ -61,7 +60,7 @@ public class ShearedWrenchListener implements Listener {
         redstoneMap = mapBuilder.build();
     }
 
-    public ShearedWrenchListener() {
+    public ShearsWrenchListener() {
         Bukkit.getPluginManager().registerEvents(this, instance);
     }
 
