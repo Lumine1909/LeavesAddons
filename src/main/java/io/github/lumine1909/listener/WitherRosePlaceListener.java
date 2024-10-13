@@ -11,18 +11,18 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import static io.github.lumine1909.LeavesAddons.config;
-import static io.github.lumine1909.LeavesAddons.instance;
+import static io.github.lumine1909.LeavesAddons.addonsConfig;
+import static io.github.lumine1909.LeavesAddons.plugin;
 
 public class WitherRosePlaceListener implements Listener {
 
     public WitherRosePlaceListener() {
-        Bukkit.getPluginManager().registerEvents(this, instance);
+        Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler (priority = EventPriority.MONITOR)
     public void onInteract(PlayerInteractEvent e) {
-        if (!config.BETTER_WITHER_ROSE_PLACE || e.getAction() != Action.RIGHT_CLICK_BLOCK || e.isCancelled() || e.getItem() == null || e.getClickedBlock() == null || e.getBlockFace() != BlockFace.UP || e.getItem().isEmpty() || e.getItem().getType() != Material.WITHER_ROSE) {
+        if (!addonsConfig.BETTER_WITHER_ROSE_PLACE || e.getAction() != Action.RIGHT_CLICK_BLOCK || e.isCancelled() || e.getItem() == null || e.getClickedBlock() == null || e.getBlockFace() != BlockFace.UP || e.getItem().isEmpty() || e.getItem().getType() != Material.WITHER_ROSE) {
             return;
         }
         Location loc = e.getClickedBlock().getLocation().add(0, 1, 0);

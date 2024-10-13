@@ -4,11 +4,12 @@ plugins {
 }
 
 group = "io.github.lumine1909"
-version = "alpha-1.3"
+version = "alpha-1.4"
 description = "Plugin side features for Leaves server."
 
 repositories {
     mavenCentral()
+    mavenLocal()
     maven("https://repo.codemc.org/repository/maven-public/")
     maven("https://repo.leavesmc.org/snapshots/")
     maven("https://minevolt.net/repo/")
@@ -16,7 +17,7 @@ repositories {
 
 dependencies {
     compileOnly("org.leavesmc.leaves:leaves-api:1.21.1-R0.1-SNAPSHOT")
-    //compileOnly("org.leavesmc.leaves:leaves-server:1.21.1-R0.1-SNAPSHOT")
+    compileOnly("org.leavesmc.leaves:leaves-server:1.21.1-R0.1-SNAPSHOT")
     compileOnly("fr.xephi:authme:5.6.1-SNAPSHOT")
 }
 
@@ -25,7 +26,7 @@ tasks {
         options.encoding = "UTF-8"
     }
     processResources {
-        filteringCharset = Charsets.UTF_8.name() // We want UTF-8 for everything
+        filteringCharset = Charsets.UTF_8.name()
         val props = mapOf(
             "name" to project.name,
             "version" to project.version,

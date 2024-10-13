@@ -4,6 +4,6 @@ config-version: 1
 feature:
   redstone-shears-wrench: true
   better-wither-rose-place: true
-  shulker-box-stack: 1
 fix:
   authme-bot-support: true
+  client-stack-view: true

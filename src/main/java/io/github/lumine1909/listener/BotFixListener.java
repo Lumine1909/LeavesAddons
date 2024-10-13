@@ -14,12 +14,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Locale;
 
-import static io.github.lumine1909.LeavesAddons.config;
-import static io.github.lumine1909.LeavesAddons.instance;
+import static io.github.lumine1909.LeavesAddons.addonsConfig;
+import static io.github.lumine1909.LeavesAddons.plugin;
 
 public class BotFixListener implements Listener {
 
-    private boolean isAuthmeEnabled;
+    private final boolean isAuthmeEnabled;
     private PlayerCache cache;
 
     public BotFixListener() {
@@ -43,12 +43,12 @@ public class BotFixListener implements Listener {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        Bukkit.getPluginManager().registerEvents(this, instance);
+        Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
     @EventHandler
     public void onBotJoin(BotJoinEvent e) {
-        if (!isAuthmeEnabled || !config.AUTHME_BOT_SUPPORT) {
+        if (!isAuthmeEnabled || !addonsConfig.AUTHME_BOT_SUPPORT) {
             return;
         }
         cache.updatePlayer(PlayerAuth.builder().name(e.getBot().getName().toLowerCase(Locale.ROOT)).build());
@@ -56,7 +56,7 @@ public class BotFixListener implements Listener {
 
     @EventHandler
     public void onBotRemove(BotRemoveEvent e) {
-        if (!isAuthmeEnabled || !config.AUTHME_BOT_SUPPORT) {
+        if (!isAuthmeEnabled || !addonsConfig.AUTHME_BOT_SUPPORT) {
             return;
         }
         cache.removePlayer(e.getBot().getName().toLowerCase(Locale.ROOT));
