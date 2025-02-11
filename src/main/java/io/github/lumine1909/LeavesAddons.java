@@ -3,10 +3,7 @@ package io.github.lumine1909;
 import io.github.lumine1909.command.CommandOverrideHandler;
 import io.github.lumine1909.config.AddonsConfigHandler;
 import io.github.lumine1909.config.LeavesConfigHandler;
-import io.github.lumine1909.listener.BotFixListener;
-import io.github.lumine1909.listener.ShearsWrenchListener;
-import io.github.lumine1909.listener.StackViewListener;
-import io.github.lumine1909.listener.WitherRosePlaceListener;
+import io.github.lumine1909.listener.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class LeavesAddons extends JavaPlugin {
@@ -30,5 +27,6 @@ public class LeavesAddons extends JavaPlugin {
         new ShearsWrenchListener();
         new WitherRosePlaceListener();
         new StackViewListener();
+        new LevelizedBotListener();
     }
 }

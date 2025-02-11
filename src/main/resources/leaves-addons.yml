@@ -2,8 +2,9 @@
 config-version: 1
 
 feature:
-  redstone-shears-wrench: true
+  redstone-shears-wrench: false
   better-wither-rose-place: true
+  levelized-bot-loading: false
 fix:
   authme-bot-support: true
-  client-stack-view: true
+  client-stack-view: false

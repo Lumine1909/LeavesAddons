@@ -20,6 +20,7 @@ public class AddonsConfigHandler {
     public boolean BETTER_WITHER_ROSE_PLACE;
     public boolean AUTHME_BOT_SUPPORT;
     public boolean CLIENT_STACK_VIEW;
+    public boolean LEVELIZED_BOT_LOADING;
 
     public AddonsConfigHandler() {
         addons = YamlConfiguration.loadConfiguration(addonsFile);
@@ -30,6 +31,7 @@ public class AddonsConfigHandler {
         BETTER_WITHER_ROSE_PLACE  = addons.getBoolean("feature.better-wither-rose-place", false);
         AUTHME_BOT_SUPPORT = addons.getBoolean("fix.authme-bot-support", false);
         CLIENT_STACK_VIEW = addons.getBoolean("fix.client-stack-view", false);
+        LEVELIZED_BOT_LOADING = addons.getBoolean("feature.levelized-bot-loading", false);
     }
 
     private void createNewConfig() {
