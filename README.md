@@ -1,7 +1,7 @@
 Features:
  1. Authme bot support
- 2. https://github.com/LeavesMC/Leaves/issues/281 (Server fixed already)
+ 2. https://github.com/LeavesMC/Leaves/issues/281 (Fixed on server side)
  3. https://github.com/LeavesMC/Leaves/issues/282
- 4. https://github.com/LeavesMC/Leaves/issues/329 (Server fixed already)
- 5. https://github.com/LeavesMC/Leaves/issues/356 (Server fixed already)
- 6. 
+ 4. https://github.com/LeavesMC/Leaves/issues/329 (Fixed on server side)
+ 5. https://github.com/LeavesMC/Leaves/issues/356 (Fixed on server side)
+ 6. https://github.com/LeavesMC/Leaves/issues/411
