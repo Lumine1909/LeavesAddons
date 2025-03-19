@@ -21,6 +21,7 @@ public class AddonsConfigHandler {
     public boolean AUTHME_BOT_SUPPORT;
     public boolean CLIENT_STACK_VIEW;
     public boolean LEVELIZED_BOT_LOADING;
+    public boolean BETTER_BOT_CREATION;
 
     public AddonsConfigHandler() {
         addons = YamlConfiguration.loadConfiguration(addonsFile);
@@ -32,6 +33,7 @@ public class AddonsConfigHandler {
         AUTHME_BOT_SUPPORT = addons.getBoolean("fix.authme-bot-support", false);
         CLIENT_STACK_VIEW = addons.getBoolean("fix.client-stack-view", false);
         LEVELIZED_BOT_LOADING = addons.getBoolean("feature.levelized-bot-loading", false);
+        BETTER_BOT_CREATION = addons.getBoolean("feature.better-bot-creation", false);
     }
 
     private void createNewConfig() {

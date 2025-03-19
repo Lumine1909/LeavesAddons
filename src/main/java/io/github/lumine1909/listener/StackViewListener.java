@@ -2,15 +2,14 @@ package io.github.lumine1909.listener;
 
 import org.bukkit.Bukkit;
 import org.bukkit.block.ShulkerBox;
-import org.bukkit.craftbukkit.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
+import org.leavesmc.leaves.LeavesConfig;
 import org.leavesmc.leaves.bytebuf.Bytebuf;
-import org.leavesmc.leaves.bytebuf.WrappedBytebuf;
 import org.leavesmc.leaves.bytebuf.packet.Packet;
 import org.leavesmc.leaves.bytebuf.packet.PacketListener;
 import org.leavesmc.leaves.bytebuf.packet.PacketType;
@@ -48,7 +47,7 @@ public class StackViewListener implements Listener {
                     if (item == null) {
                         return packet;
                     }
-                    Bytebuf newBuf = Bytebuf.buf(4096);
+                    Bytebuf newBuf = Bytebuf.buf();
                     newBuf.writeByte(containerId).writeVarInt(stateId).writeShort(slot).writeItemStack(item);
                     return new Packet(packet.type(), newBuf);
                 }
@@ -56,7 +55,7 @@ public class StackViewListener implements Listener {
                     Bytebuf buf = packet.bytebuf();
                     byte containerId = buf.readByte();
                     int stateId = buf.readVarInt();
-                    List<ItemStack> items = new ArrayList<>(readItemList(buf));
+                    List<ItemStack> items = new ArrayList<>(buf.readItemStackList());
                     boolean flag = false;
                     for (int i = 0; i < items.size(); i++) {
                         ItemStack item = editItem(items.get(i));
@@ -69,9 +68,9 @@ public class StackViewListener implements Listener {
                         return packet;
                     }
                     ItemStack item = buf.readItemStack();
-                    Bytebuf newBuf = Bytebuf.buf(16384);
+                    Bytebuf newBuf = Bytebuf.buf();
                     newBuf.writeByte(containerId).writeVarInt(stateId);
-                    writeItemList(newBuf, items);
+                    newBuf.writeItemStackList(items);
                     newBuf.writeItemStack(item);
                     return new Packet(packet.type(), newBuf);
                 }
@@ -96,16 +95,6 @@ public class StackViewListener implements Listener {
         || !shulkerBox.getInventory().isEmpty()) {
             return -1;
         }
-        return Math.max(leavesConfig.getInt("shulkerBoxStackSize"), item.getMaxStackSize());
-    }
-
-    private List<ItemStack> readItemList(Bytebuf buf) {
-        List<net.minecraft.world.item.ItemStack> nmsItems = net.minecraft.world.item.ItemStack.OPTIONAL_LIST_STREAM_CODEC.decode(((WrappedBytebuf) buf).getRegistryBuf());
-        return nmsItems.stream().map(CraftItemStack::asBukkitCopy).toList();
-    }
-
-    private void writeItemList(Bytebuf buf, List<ItemStack> itemStackList) {
-        List<net.minecraft.world.item.ItemStack> nmsItems = itemStackList.stream().map(CraftItemStack::asNMSCopy).toList();
-        net.minecraft.world.item.ItemStack.OPTIONAL_LIST_STREAM_CODEC.encode(((WrappedBytebuf) buf).getRegistryBuf(), nmsItems);
+        return Math.max(LeavesConfig.modify.shulkerBoxStackSize, item.getMaxStackSize());
     }
 }

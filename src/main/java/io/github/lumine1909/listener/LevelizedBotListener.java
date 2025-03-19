@@ -71,20 +71,20 @@ public class LevelizedBotListener implements Listener {
         if (!addonsConfig.LEVELIZED_BOT_LOADING) {
             return;
         }
-        for (Iterator<Map.Entry<String, World>> it = bot2Level.entrySet().iterator(); it.hasNext(); ) {
-            Map.Entry<String, World> entry = it.next();
-            if (entry.getValue().equals(event.getWorld())) {
-                unloadedBots.computeIfAbsent(event.getWorld().getUID(), v -> new ArrayList<>()).add(entry.getKey());
-                it.remove();
+        bot2Level.entrySet().removeIf((e) -> {
+            if (e.getValue().equals(event.getWorld())) {
+                unloadedBots.computeIfAbsent(event.getWorld().getUID(), v -> new ArrayList<>()).add(e.getKey());
+                return true;
             }
-        }
+            return false;
+        });
     }
 
     private UUID getBotLevel(String botName) {
         UUID uuid = BotUtil.getBotUUID(botName);
         ServerBot bot = new ServerBot(MinecraftServer.getServer(), MinecraftServer.getServer().getLevel(Level.OVERWORLD), new GameProfile(uuid, botName));
         Optional<CompoundTag> optional = storage.load(bot);
-        if (optional.isPresent() &&  optional.get().contains("WorldUUIDMost") && optional.get().contains("WorldUUIDLeast")) {
+        if (optional.isPresent() && optional.get().contains("WorldUUIDMost") && optional.get().contains("WorldUUIDLeast")) {
             return new UUID(optional.get().getLong("WorldUUIDMost"), optional.get().getLong("WorldUUIDLeast"));
         }
         return null;

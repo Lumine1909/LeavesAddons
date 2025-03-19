@@ -21,7 +21,10 @@ public class CommandOverrideHandler {
         CommandSender sender = e.getSender();
         String[] args = e.getBuffer().substring(e.getBuffer().indexOf(" ") + 1).split(" ");
         if (overriders.containsKey(command)) {
-            e.setCompletions(overriders.get(command).onTabComplete(command, sender, args));
+            List<String> completions = overriders.get(command).onTabComplete(command, sender, args);
+            if (completions != null) {
+                e.setCompletions(completions);
+            }
         }
     }
 
@@ -32,10 +35,9 @@ public class CommandOverrideHandler {
         String[] args = commandMsg.substring(commandMsg.indexOf(" ") + 1).split(" ");
         if (overriders.containsKey(command)) {
             CommandOverrider overrider = overriders.get(command);
-            overrider.onCommand(command, sender, args);
-            e.setCancelled(true);
+            if (overrider.onCommand(command, sender, args)) {
+                e.setCancelled(true);
+            }
         }
     }
-
-
 }

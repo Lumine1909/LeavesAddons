@@ -4,12 +4,12 @@ plugins {
 }
 
 group = "io.github.lumine1909"
-version = "alpha-1.6"
-description = "Plugin side features for Leaves server."
+version = "beta-1.0"
+description = "Plugin side features for Leaves server"
 
 repositories {
     mavenCentral()
-    mavenLocal()
+    //mavenLocal()
     maven("https://repo.codemc.org/repository/maven-public/")
     maven("https://repo.leavesmc.org/snapshots/")
     maven("https://minevolt.net/repo/")
@@ -17,7 +17,6 @@ repositories {
 
 dependencies {
     compileOnly("org.leavesmc.leaves:leaves-api:1.21.4-R0.1-SNAPSHOT")
-    //compileOnly("org.leavesmc.leaves:leaves-server:1.21.4-R0.1-SNAPSHOT")
     compileOnly("fr.xephi:authme:5.6.1-SNAPSHOT")
     compileOnly("com.mojang:authlib:3.13.56")
     compileOnly(files("libs/leaves-server-1.21.4-R0.1-SNAPSHOT.jar"))

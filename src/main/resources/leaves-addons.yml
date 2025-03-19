@@ -1,10 +1,8 @@
-# This is not configurable, only used for tracking config version
-config-version: 1
-
 feature:
   redstone-shears-wrench: false
-  better-wither-rose-place: true
+  better-wither-rose-place: false
   levelized-bot-loading: false
+  better-bot-creation: false
 fix:
   authme-bot-support: true
   client-stack-view: false
