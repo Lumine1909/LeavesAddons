@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "io.github.lumine1909"
-version = "beta-1.0"
+version = "beta-1.1"
 description = "Plugin side features for Leaves server"
 
 repositories {

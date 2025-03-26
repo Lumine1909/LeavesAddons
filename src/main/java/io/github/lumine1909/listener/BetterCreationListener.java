@@ -1,6 +1,5 @@
 package io.github.lumine1909.listener;
 
-import io.github.lumine1909.command.BotCreateCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -39,7 +38,7 @@ public class BetterCreationListener implements Listener {
     public void onBotRemove(BotRemoveEvent e) {
         UUID uuid;
         if ((uuid = e.getBot().getCreatePlayerUUID()) != null) {
-            creator2BotCountMap.remove(uuid);
+            creator2BotCountMap.put(uuid, creator2BotCountMap.getOrDefault(uuid, 1) - 1);
         }
     }
 }

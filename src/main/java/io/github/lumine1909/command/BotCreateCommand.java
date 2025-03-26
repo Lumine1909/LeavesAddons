@@ -81,7 +81,7 @@ public class BotCreateCommand implements CommandOverrider {
                 return i;
             }
         }
-        return LeavesConfig.modify.fakeplayer.limit;
+        return LeavesConfig.modify.fakeplayer.limit - Bukkit.getBotManager().getBots().size();
     }
 
     private boolean canCreate(CommandSender sender, @NotNull String name) {
