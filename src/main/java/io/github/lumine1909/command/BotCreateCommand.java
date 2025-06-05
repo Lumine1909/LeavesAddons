@@ -9,6 +9,7 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.leavesmc.leaves.LeavesConfig;
+import org.leavesmc.leaves.bot.BotUtil;
 import org.leavesmc.leaves.entity.BotCreator;
 import org.leavesmc.leaves.entity.BotManager;
 
@@ -43,7 +44,8 @@ public class BotCreateCommand implements CommandOverrider {
             return false;
         }
         String botName = args[1];
-        if (this.canCreate(sender, botName)) {
+        String fullName = BotUtil.getFullName(botName);
+        if (this.canCreate(sender, fullName)) {
             BotCreator creator = BotCreator.of(botName, Bukkit.getWorlds().getFirst().getSpawnLocation()).creator(sender);
             if (args.length >= 3) {
                 creator.skinName(args[2]);

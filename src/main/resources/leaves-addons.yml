@@ -1,8 +1,18 @@
 feature:
-  redstone-shears-wrench: false
+  # Players can place wither rose everywhere without triggering block update
   better-wither-rose-place: false
+
+  # The fakeplayer's save/load will follow world's s/l, but not globally
   levelized-bot-loading: false
+
+  # The fakeplayer creation limit is able to set by player use bukkit permission system
+  # Use bukkit.command.bot.x to give a player x max fakeplayer limit
+  # Use bukkit.command.bot.unlimited to disable limit of a player
+  # If enabled, the limit from leaves.yml will be ignored
   better-bot-creation: false
+
+  # The fakeplayer will inherit creator's skin instead of default skin by its name
+  bot-skin-inherit: false
 fix:
+  # Let leaves' fakeplayer work correctly with Authme plugin
   authme-bot-support: true
-  client-stack-view: false

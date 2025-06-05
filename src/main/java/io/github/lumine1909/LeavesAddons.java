@@ -4,6 +4,7 @@ import io.github.lumine1909.command.BotCreateCommand;
 import io.github.lumine1909.command.CommandOverrideHandler;
 import io.github.lumine1909.config.AddonsConfigHandler;
 import io.github.lumine1909.listener.*;
+import io.github.lumine1909.metrics.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class LeavesAddons extends JavaPlugin {
@@ -19,13 +20,12 @@ public class LeavesAddons extends JavaPlugin {
         commandOverrideHandler = new CommandOverrideHandler();
         registerListeners();
         registerCommands();
+        new Metrics(this, 26096);
     }
 
     private void registerListeners() {
         new BotFixListener();
-        new ShearsWrenchListener();
         new WitherRosePlaceListener();
-        new StackViewListener();
         new LevelizedBotListener();
         new BetterCreationListener();
         new CommandHandleListener(commandOverrideHandler);

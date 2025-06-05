@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "io.github.lumine1909"
-version = "beta-1.1"
+version = "beta-2.0"
 description = "Plugin side features for Leaves server"
 
 repositories {
@@ -16,10 +16,10 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.leavesmc.leaves:leaves-api:1.21.4-R0.1-SNAPSHOT")
+    compileOnly("org.leavesmc.leaves:leaves-api:1.21.5-R0.1-SNAPSHOT")
     compileOnly("fr.xephi:authme:5.6.1-SNAPSHOT")
     compileOnly("com.mojang:authlib:3.13.56")
-    compileOnly(files("libs/leaves-server-1.21.4-R0.1-SNAPSHOT.jar"))
+    compileOnly(files("libs/leaves-server-1.21.5-R0.1-SNAPSHOT.jar"))
 }
 
 tasks {
