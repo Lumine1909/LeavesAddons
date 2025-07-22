@@ -2,9 +2,6 @@ feature:
   # Players can place wither rose everywhere without triggering block update
   better-wither-rose-place: false
 
-  # The fakeplayer's save/load will follow world's s/l, but not globally
-  levelized-bot-loading: false
-
   # The fakeplayer creation limit is able to set by player use bukkit permission system
   # Use bukkit.command.bot.x to give a player x max fakeplayer limit
   # Use bukkit.command.bot.unlimited to disable limit of a player

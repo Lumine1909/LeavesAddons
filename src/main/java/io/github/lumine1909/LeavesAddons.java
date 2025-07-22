@@ -26,7 +26,6 @@ public class LeavesAddons extends JavaPlugin {
     private void registerListeners() {
         new BotFixListener();
         new WitherRosePlaceListener();
-        new LevelizedBotListener();
         new BetterCreationListener();
         new CommandHandleListener(commandOverrideHandler);
     }
