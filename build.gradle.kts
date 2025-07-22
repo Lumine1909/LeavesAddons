@@ -1,6 +1,6 @@
 plugins {
     id("java")
-    id("io.github.goooler.shadow") version "8.1.7"
+    id("com.gradleup.shadow") version "9.0.0-beta13"
 }
 
 group = "io.github.lumine1909"
@@ -9,22 +9,25 @@ description = "Plugin side features for Leaves server"
 
 repositories {
     mavenCentral()
-    //mavenLocal()
     maven("https://repo.codemc.org/repository/maven-public/")
     maven("https://repo.leavesmc.org/snapshots/")
     maven("https://minevolt.net/repo/")
 }
 
 dependencies {
-    compileOnly("org.leavesmc.leaves:leaves-api:1.21.5-R0.1-SNAPSHOT")
+    compileOnly("org.leavesmc.leaves:leaves-api:1.21.8-R0.1-SNAPSHOT")
     compileOnly("fr.xephi:authme:5.6.1-SNAPSHOT")
-    compileOnly("com.mojang:authlib:3.13.56")
-    compileOnly(files("libs/leaves-server-1.21.5-R0.1-SNAPSHOT.jar"))
+    compileOnly(files("libs/leaves-server-1.21.8-R0.1-SNAPSHOT.jar"))
+    compileOnly(files("libs/authlib-6.0.58.jar"))
 }
 
 tasks {
     withType<JavaCompile> {
         options.encoding = "UTF-8"
+    }
+    shadowJar {
+        archiveFileName.set("LeavesAddons-${version}-MC-1.21.8.jar")
+        minimize()
     }
     processResources {
         filteringCharset = Charsets.UTF_8.name()

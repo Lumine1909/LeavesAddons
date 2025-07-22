@@ -10,7 +10,8 @@ import org.leavesmc.leaves.event.bot.BotRemoveEvent;
 import java.util.UUID;
 
 import static io.github.lumine1909.LeavesAddons.plugin;
-import static io.github.lumine1909.command.BotCreateCommand.*;
+import static io.github.lumine1909.command.BotCreateCommand.creator2BotCountMap;
+import static io.github.lumine1909.command.BotCreateCommand.pendingBots;
 
 public class BetterCreationListener implements Listener {
 

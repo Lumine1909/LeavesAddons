@@ -1,5 +1,6 @@
 package io.github.lumine1909.command;
 
+import io.github.lumine1909.util.SkinUtil;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -9,21 +10,22 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.leavesmc.leaves.LeavesConfig;
+import org.leavesmc.leaves.bot.BotList;
 import org.leavesmc.leaves.bot.BotUtil;
-import org.leavesmc.leaves.entity.BotCreator;
-import org.leavesmc.leaves.entity.BotManager;
+import org.leavesmc.leaves.entity.bot.BotCreator;
+import org.leavesmc.leaves.entity.bot.BotManager;
 
 import java.util.*;
 
-import static io.github.lumine1909.LeavesAddons.*;
+import static io.github.lumine1909.LeavesAddons.addonsConfig;
+import static io.github.lumine1909.LeavesAddons.commandOverrideHandler;
 import static net.kyori.adventure.text.Component.text;
 
 public class BotCreateCommand implements CommandOverrider {
 
+    public static final Map<UUID, Integer> creator2BotCountMap = new HashMap<>();
     private static final String BASE_PERM = "bukkit.command.bot.";
     private static final UUID DEFAULT_UUID = new UUID(114514L, 1919810L);
-
-    public static final Map<UUID, Integer> creator2BotCountMap = new HashMap<>();
     public static ArrayList<String> pendingBots = new ArrayList<>();
 
     public BotCreateCommand() {
@@ -37,7 +39,7 @@ public class BotCreateCommand implements CommandOverrider {
 
     @Override
     public boolean onCommand(String command, CommandSender sender, String[] args) {
-        if (!addonsConfig.BETTER_BOT_CREATION) {
+        if (!addonsConfig.BETTER_BOT_CREATION && !addonsConfig.BOT_SKIN_INHERIT) {
             return false;
         }
         if (args.length < 2 || !args[0].equals("create")) {
@@ -49,6 +51,8 @@ public class BotCreateCommand implements CommandOverrider {
             BotCreator creator = BotCreator.of(botName, Bukkit.getWorlds().getFirst().getSpawnLocation()).creator(sender);
             if (args.length >= 3) {
                 creator.skinName(args[2]);
+            } else if (addonsConfig.BOT_SKIN_INHERIT && sender instanceof Player player) {
+                creator.skinName(null).skin(SkinUtil.getSkin(player));
             }
 
             if (sender instanceof Player player) {
@@ -63,7 +67,7 @@ public class BotCreateCommand implements CommandOverrider {
                         if (world != null) {
                             creator.location(new Location(world, x, y, z));
                         }
-                    } catch (Exception e) {
+                    } catch (Exception ignored) {
 
                     }
                 }
@@ -103,7 +107,7 @@ public class BotCreateCommand implements CommandOverrider {
             return false;
         }
 
-        if (creator2BotCountMap.computeIfAbsent(getSenderUUID(sender), uuid -> 0) >= getMaxCreatableSize(sender)) {
+        if (addonsConfig.BETTER_BOT_CREATION ? creator2BotCountMap.computeIfAbsent(getSenderUUID(sender), uuid -> 0) >= getMaxCreatableSize(sender) : BotList.INSTANCE.bots.size() >= LeavesConfig.modify.fakeplayer.limit) {
             sender.sendMessage(text("Fakeplayer limit is full", NamedTextColor.RED));
             return false;
         }

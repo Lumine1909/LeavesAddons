@@ -24,10 +24,10 @@ import static io.github.lumine1909.LeavesAddons.plugin;
 public class BotFixListener implements Listener {
 
     private final boolean hasAuthme;
-    private boolean isAuthmeEnabled;
     private final AuthMe authMe;
+    private boolean isAuthmeEnabled;
     private PlayerCache cache;
-    private List<PlayerAuth> preLoadBots = new ArrayList<>();
+    private final List<PlayerAuth> preLoadBots = new ArrayList<>();
 
     public BotFixListener() {
         authMe = (AuthMe) Bukkit.getPluginManager().getPlugin("Authme");

@@ -20,7 +20,7 @@ public class WitherRosePlaceListener implements Listener {
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
-    @EventHandler (priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onInteract(PlayerInteractEvent e) {
         if (!addonsConfig.BETTER_WITHER_ROSE_PLACE || e.getAction() != Action.RIGHT_CLICK_BLOCK || e.isCancelled() || e.getItem() == null || e.getClickedBlock() == null || e.getBlockFace() != BlockFace.UP || e.getItem().isEmpty() || e.getItem().getType() != Material.WITHER_ROSE) {
             return;
